@@ -1,0 +1,46 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.App {
+  text-align: center;
+  color: white;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.card {
+  background: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+.card.characters {
+  border: 2px solid #ffcc00;
+}
+
+.card.villains {
+  border: 2px solid #ff0000;
+}
+
+.card.animals {
+  border: 2px solid #00cc00;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
