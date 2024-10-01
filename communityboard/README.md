@@ -31,7 +31,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-[<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />](https://imgur.com/NTi7TDg.gif)
+[<img src='http://i.imgur.com/link/to/your/gif/file' title='Video Walkthrough' width='' alt='Video Walkthrough' />](https://imgur.com/NTi7TDg)
 
 GIF created with ...  
 LiceCap
