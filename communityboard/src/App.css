@@ -14,7 +14,18 @@ body {
   text-align: center;
   margin-left: 50%;
   margin-right: 50%;
+
+  h1 {
+    margin-bottom: 0px;
+  }
+
+  h2 {
+    margin-bottom: 100px;
+  }
+
 }
+
+
 
 .Cards {
   display: flex;
@@ -48,8 +59,7 @@ body {
   }
 }
 
-.Event h6, h5 {
-  line-height: 0px;
-  align-content: center;
+.Event h3 {
+  height: 30px;
 }
 
