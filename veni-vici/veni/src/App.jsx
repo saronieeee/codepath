@@ -8,15 +8,20 @@ function App() {
     const [prevArtworks, setPrevArtworks] = useState([]);
 
     const fetchArtwork = async () => {
-        const response = await fetch(`https://api.harvardartmuseums.org/object?apikey=${ACCESS_KEY}&size=1&sort=random`);
-        const json = await response.json();
+        try {
+            const response = await fetch(`https://api.harvardartmuseums.org/object?apikey=5507b980-3ec1-4dcc-9150-09a85e9a2622&size=1&sort=random`);
+            const json = await response.json();
 
-        if (json.records && json.records.length > 0) {
-            const newArtwork = json.records[0];
-            setArtwork(newArtwork);
-            setPrevArtworks((artworks) => [...artworks, newArtwork]);
-        } else {
-            alert("Failed to fetch artwork. Please try again.");
+            if (json.records && json.records.length > 0) {
+                const newArtwork = json.records[0];
+                setArtwork(newArtwork);
+                setPrevArtworks((artworks) => [...artworks, newArtwork]);
+            } else {
+                alert("Failed to fetch artwork. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error fetching the artwork:", error);
+            alert("An error occurred. Please try again later.");
         }
     };
 
@@ -28,9 +33,11 @@ function App() {
             </button>
             {artwork && (
                 <div className="artwork-container">
-                    <h2>{artwork.title}</h2>
+                    <h2>{artwork.title || 'Untitled'}</h2>
                     <p>Artist: {artwork.people ? artwork.people.map(person => person.name).join(', ') : 'Unknown'}</p>
-                    <img className="artwork-image" src={artwork.primaryimageurl} alt={artwork.title} />
+                    {artwork.primaryimageurl && (
+                        <img className="artwork-image" src={artwork.primaryimageurl} alt={artwork.title} />
+                    )}
                     <p>{artwork.description || 'No description available.'}</p>
                 </div>
             )}

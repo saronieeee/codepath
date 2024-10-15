@@ -3,7 +3,7 @@
   body{
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
-    color: #343a40;
+    color: #ffffff;
     margin: 0;
     padding: 0;
     display: flex;
@@ -56,7 +56,7 @@ input {
 .image-container {
   display: flex;
   justify-content: space-evenly;
-  padding: 10px;
+  padding: 100px;
   flex-wrap: wrap;
 }
 
@@ -64,7 +64,9 @@ input {
   background-color: rgba(37, 67, 110, 0.9);
   border-radius: 10px;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 100px;
+  padding-left: 50px;
+  padding-right: 50px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-top: 15px;
 }
@@ -104,4 +106,17 @@ input {
 
 .gallery-screenshot {
   border-radius: 8px;
+}
+
+.artwork-container {
+  margin-top: 20px;
+}
+
+.artwork-image, .gallery-screenshot {
+  width: 100%;
+  height: auto;
+  max-width: 300px; /* Ensure all images are the same size */
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
