@@ -1,0 +1,179 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+/* Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background-color: #4a4a4a;
+  min-height: 100vh;
+  padding-top: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.sidebar-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  font-size: 16px;
+}
+
+.sidebar-link:hover {
+  background-color: #5a5a5a;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  margin-left: 200px;
+  padding: 40px;
+  background-color: #1a1a1a;
+  min-height: 100vh;
+}
+
+/* Crewmate Details */
+.crewmate-details {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.crewmate-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 30px 0 20px;
+  color: white;
+}
+
+.crewmate-stats {
+  margin: 30px 0;
+}
+
+.stat-item {
+  font-size: 18px;
+  margin: 15px 0;
+  color: white;
+}
+
+.speed-warning {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  display: inline-block;
+}
+
+.edit-link {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 30px;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* Form Styles */
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #666;
+  background-color: #333;
+  color: white;
+}
+
+/* Button Styles */
+.button {
+  background-color: #4a4a4a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #5a5a5a;
+}
+
+/* Gallery Styles */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.crewmate-card {
+  background-color: #333;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Logo */
+.logo {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .logo {
+    display: none;
+  }
+}
