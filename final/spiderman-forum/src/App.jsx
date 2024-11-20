@@ -207,9 +207,9 @@ const HomePage = ({ posts, searchTerm, setSearchTerm, sortBy, setSortBy }) => {
 
       <div className="posts-grid">
         {filteredPosts.map(post => (
-          <Link 
-            to={`/post/${post.id}`} 
-            key={post.id} 
+          <Link
+            to={`/post/${post.id}`}
+            key={post.id}
             className="post-card"
           >
             <div className="post-image-container">
@@ -237,9 +237,19 @@ const PostDetail = ({ posts, setPosts }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [comment, setComment] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [editForm, setEditForm] = useState({
+    title: '',
+    content: ''
+  });
 
   const post = posts.find(p => p.id === parseInt(id));
-  console.log('Post found:', post); // Debug log
+
+  useEffect(() => {
+    if (post) {
+      setEditForm({ title: post.title, content: post.content });
+    }
+  }, [post]);
 
   if (!post) {
     return (
@@ -251,6 +261,31 @@ const PostDetail = ({ posts, setPosts }) => {
       </div>
     );
   }
+
+  const handleUpvote = () => {
+    setPosts(currentPosts =>
+      currentPosts.map(p =>
+        p.id === post.id ? { ...p, upvotes: p.upvotes + 1 } : p
+      )
+    );
+  };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    setPosts(currentPosts =>
+      currentPosts.map(p =>
+        p.id === post.id ? { ...p, ...editForm } : p
+      )
+    );
+    setIsEditing(false);
+  };
+
+  const handleDelete = () => {
+    if (window.confirm('Are you sure you want to delete this post?')) {
+      setPosts(currentPosts => currentPosts.filter(p => p.id !== post.id));
+      navigate('/');
+    }
+  };
 
   const handleAddComment = (e) => {
     e.preventDefault();
@@ -275,11 +310,45 @@ const PostDetail = ({ posts, setPosts }) => {
 
   return (
     <div className="post-detail-container">
-      <div className="post-detail">
-        <button onClick={() => navigate(-1)} className="back-button">
-          ← Back
-        </button>
+      <button onClick={() => navigate(-1)} className="back-button">
+        ← Back
+      </button>
 
+      {isEditing ? (
+        // Edit Form
+        <form onSubmit={handleEdit} className="edit-form">
+          <div className="form-group">
+            <label className="form-label">Title</label>
+            <input
+              type="text"
+              value={editForm.title}
+              onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
+              className="form-input"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Content</label>
+            <textarea
+              value={editForm.content}
+              onChange={(e) => setEditForm({ ...editForm, content: e.target.value })}
+              className="form-textarea"
+              required
+            />
+          </div>
+          <div className="button-group">
+            <button type="submit" className="submit-button">Save Changes</button>
+            <button
+              type="button"
+              onClick={() => setIsEditing(false)}
+              className="cancel-button"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      ) : (
+        // Post Display
         <div className="post-content">
           <img
             src={post.imageUrl}
@@ -289,15 +358,27 @@ const PostDetail = ({ posts, setPosts }) => {
 
           <h1 className="detail-title">{post.title}</h1>
 
-          <div className="post-info">
-            <span>{new Date(post.createdAt).toLocaleDateString()}</span>
-            <span className="upvote-count">⬆️ {post.upvotes}</span>
+          <div className="post-actions">
+            <div className="post-info">
+              <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+              <button onClick={handleUpvote} className="upvote-button">
+                ⬆️ {post.upvotes}
+              </button>
+            </div>
+            <div className="action-buttons">
+              <button onClick={() => setIsEditing(true)} className="edit-button">
+                Edit Post
+              </button>
+              <button onClick={handleDelete} className="delete-button">
+                Delete Post
+              </button>
+            </div>
           </div>
 
           <p className="post-text">{post.content}</p>
 
           <div className="comments-section">
-            <h2 className="comments-title">Comments</h2>
+            <h2>Comments</h2>
 
             <form onSubmit={handleAddComment} className="comment-form">
               <textarea
@@ -327,7 +408,7 @@ const PostDetail = ({ posts, setPosts }) => {
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
@@ -386,9 +467,9 @@ const NewsPage = ({ posts, searchTerm, setSearchTerm, sortBy, setSortBy }) => {
 
           <div className="posts-grid">
             {filteredPosts.map(post => (
-              <Link 
-                to={`/post/${post.id}`} 
-                key={post.id} 
+              <Link
+                to={`/post/${post.id}`}
+                key={post.id}
                 className="post-card"
               >
                 <div className="post-image-container">
